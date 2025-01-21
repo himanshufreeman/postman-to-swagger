@@ -44,9 +44,10 @@ module.exports = (collection, config) => {
 }
 
 const getPaths = (collection, config) => {
-  let result = {}
   try
   {
+  let result = {}
+
   let allItems = collection.item
     .map(grouping => grouping.item?grouping.item:grouping)
     .flat(1)
@@ -55,7 +56,7 @@ const getPaths = (collection, config) => {
         .replace(/{{/g,'{')
         .replace(/}}/g,'}')
       result[path] = result[path] || {}
-    } catch {}
+   
       // each method (GET, POST, PUT, DELETE) for path
       result[path][item.request.method.toLowerCase()] = {
 
@@ -71,6 +72,7 @@ const getPaths = (collection, config) => {
 
         responses: getResponses(item.response, config)
       }
+       } catch {}
     })
 
   return result

@@ -43,38 +43,6 @@ module.exports = (collection, config) => {
   return output
 }
 
-const getPaths = (collection, config) => {
-  
-  let result = {}
-
-  let allItems = collection.item
-    .map(grouping => grouping.item?grouping.item:grouping)
-    .flat(1)
-    .forEach(item =>  {
-      let path = `/${item.request.url.path.join('/')}`
-        .replace(/{{/g,'{')
-        .replace(/}}/g,'}')
-      result[path] = result[path] || {}
-   
-      // each method (GET, POST, PUT, DELETE) for path
-      result[path][item.request.method.toLowerCase()] = {
-
-        summary: item.name,
-
-        // parameter types: [query, path, header, body, form]
-        parameters: getParameters(
-          item.request.header,
-          item.request.body,
-          item.request.url,
-          config
-        ),
-
-        responses: getResponses(item.response, config)
-      
-    })
-
-  return result
-}
 
 
 const getParameters = (header, body, url, config) => {

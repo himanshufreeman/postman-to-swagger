@@ -55,7 +55,7 @@ const getPaths = (collection, config) => {
         .replace(/{{/g,'{')
         .replace(/}}/g,'}')
       result[path] = result[path] || {}
-    } catch (error) {}
+    } catch {}
       // each method (GET, POST, PUT, DELETE) for path
       result[path][item.request.method.toLowerCase()] = {
 

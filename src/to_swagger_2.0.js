@@ -38,14 +38,13 @@ module.exports = (collection, config) => {
   }
 
   // paths
-  output.paths = getPaths(collection, config)
+  //output.paths = getPaths(collection, config)
 
   return output
 }
 
 const getPaths = (collection, config) => {
-  try
-  {
+  
   let result = {}
 
   let allItems = collection.item
@@ -71,8 +70,7 @@ const getPaths = (collection, config) => {
         ),
 
         responses: getResponses(item.response, config)
-      }
-       } catch {}
+      
     })
 
   return result
